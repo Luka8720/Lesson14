@@ -13,6 +13,15 @@ public class TireSales {
             t = (Tire)pole.pop();
             System.out.println(t);
         }
+        System.out.println("Adding 2 new Cooper Tires to Stack");
+        pole.push(new Tire("Cooper"));
+        pole.push(new Tire("Cooper"));
+        System.out.println("Selling Another 4 Tires");
+        for (int i = 0; i < 4; i++) {
+            System.out.println(pole.pop());
+        }
+        System.out.println("Next tire to be sold is "+pole.peekTop());
+        System.out.println("Number of tires lef ton pole is "+pole.size());
     }
     
 }
