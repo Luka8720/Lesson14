@@ -9,7 +9,17 @@ public class RadioCallInShow {
         phoneline.enqueue(new Caller("Amy"));
         phoneline.enqueue(new Caller("Susan"));
         System.out.println("The next caller will be: "+phoneline.peekFront());
-        
+        System.out.println("We are now talking with "+ phoneline.dequeue());
+        System.out.println("Currently we have "+phoneline.size()+" Callers waiting");
+        System.out.println("Two more people have called in and are on hold");
+        phoneline.enqueue(new Caller("Josh"));
+        phoneline.enqueue(new Caller("Sarah"));
+        System.out.println("Let's take the next call - this is: "+phoneline.dequeue());
+        System.out.println("We've run out of time, lets clear all the lines and say a quick hi to everyone");
+        while(phoneline.size()>0){
+            System.out.println("Hello "+phoneline.dequeue()+ ", thanks for calling");  
+        }
+        System.out.println("Currently we have "+phoneline.size()+" callers waiting");
     }
     
 }
