@@ -3,12 +3,12 @@ public class Patient {
    private String condition;
    
    public Patient(String n, String c){
-       n = name;
-       c = condition;
+       name = n;
+       condition = c;
    }
    
    public String toString(){
-       return "Name: "+name+" Condition: "+condition;
+       return "\n"+name+"\t"+condition;
    }
    
 }
