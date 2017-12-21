@@ -2,7 +2,7 @@ public class ERTester {
 
     public static void main(String[] args) {
         LinkedPriorityQueue ER = new LinkedPriorityQueue(3);
-        //add 2 serious, 1 critical and 1 fair
+        //add 1 serious, 0 critical and 2 fair
         ER.enqueue("Sam", 2);
         ER.enqueue("Bob", 1);
         ER.enqueue("Joe", 0);

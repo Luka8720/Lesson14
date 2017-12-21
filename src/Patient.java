@@ -6,7 +6,7 @@ public class Patient {
        name = n;
        condition = c;
    }
-   
+  
    public String toString(){
        return "\n"+name+"\t"+condition;
    }

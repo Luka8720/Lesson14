@@ -2,7 +2,7 @@
 import javax.swing.JOptionPane;
 
 public class ERGUI extends javax.swing.JFrame {
-LinkedPriorityQueue p = new LinkedPriorityQueue(3);
+LinkedPriorityQueue ER = new LinkedPriorityQueue(3);
     public ERGUI() {
         initComponents();
     }
@@ -53,6 +53,11 @@ LinkedPriorityQueue p = new LinkedPriorityQueue(3);
         btntreatall.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btntreatall.setText("Treat All");
         btntreatall.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btntreatall.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntreatallActionPerformed(evt);
+            }
+        });
 
         txtoutput.setColumns(20);
         txtoutput.setRows(5);
@@ -154,30 +159,41 @@ LinkedPriorityQueue p = new LinkedPriorityQueue(3);
     private void btnscheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnscheduleActionPerformed
         String n = txtname.getText();
         String c;
-        int level;
+        int level = 0;
         if(optfair.isSelected()){
             c = optfair.getActionCommand();
-            level = 0;
+            level = 2;
         }
         else if(optserious.isSelected()){
             c = optserious.getActionCommand();
             level = 1;
         }
-        else if(optcritical.isSelected()) c = optcritical.getActionCommand();
+        else if(optcritical.isSelected()){
+            c = optcritical.getActionCommand();
+            level = 0;
+        }
         else{
-            c = "No Condition Chosen";
             JOptionPane.showMessageDialog(this, "ERROR - No Condition Chosen");
+            return;
         }
         Patient p = new Patient(n,c);
-        
+        ER.enqueue(txtname.getText(), level);
+        txtname.setText("");
         buttonGroup1.clearSelection();
         txtoutput.append(p.toString()+"\tWaiting....");
         
     }//GEN-LAST:event_btnscheduleActionPerformed
 
     private void btntreatnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntreatnextActionPerformed
-        p.enqueue(p, level);
+        txtoutput.append("\n" + ER.dequeue() + " has been treated.");
+        
     }//GEN-LAST:event_btntreatnextActionPerformed
+
+    private void btntreatallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntreatallActionPerformed
+        while(ER.size()>0){
+            txtoutput.append("\n" + ER.dequeue() + " has been treated.");
+        }
+    }//GEN-LAST:event_btntreatallActionPerformed
 
     /**
      * @param args the command line arguments
